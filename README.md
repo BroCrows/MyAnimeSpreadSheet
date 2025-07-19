@@ -1,2 +1,20 @@
 # MyAnimeSpreadSheet
-Advanced spreadsheet made for tracking and recommending anime. 
+MyAnimeSpreadSheet (MASS) is a spreadsheet made for tracking anime. 
+Note this is a prerelease of the MetaData sheet which a link can be found below. A tracking, recommendation, and dashboard sheets are still in the works.
+
+# SpreadSheets
+- MetaData Sheet
+  - [Link](https://docs.google.com/spreadsheets/d/1Hjsrp5Elr2wJKu4j9ZvTCeFyZLUrp710jWfCPxd39Ts/edit?usp=sharing)
+  - Features
+    - Unique Identifiers
+    - Data stolen from AniDB
+    - Data stolen from Anilist
+    - Data stolen from MAL
+- UserData
+  - Merges UserList and MetaData to feed other sheets
+- UserList
+  - Main sheet for tracking anime
+- Recommendations
+  - Sheets for recommending new anime and suggesting what to watch next
+- Dashboard
+  - Sheets for viewing user stats, specific anime, and such
