@@ -2,6 +2,8 @@
 MyAnimeSpreadSheet (MASS) is a spreadsheet made for tracking anime. 
 Note this is a prerelease of the MetaData sheet which a link can be found below. A tracking, recommendation, and dashboard sheets are still in the works.
 
+I've made this Github page in hope to find help for this tool as my motivation for it has run low (waiting for recharge). Currently just waiting for someone who is better at writing.
+
 # SpreadSheets
 - MetaData Sheet
   - [Link](https://docs.google.com/spreadsheets/d/1Hjsrp5Elr2wJKu4j9ZvTCeFyZLUrp710jWfCPxd39Ts/edit?usp=sharing)
