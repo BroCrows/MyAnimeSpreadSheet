@@ -18,3 +18,13 @@ Note this is a prerelease of the MetaData sheet which a link can be found below.
   - Sheets for recommending new anime and suggesting what to watch next
 - Dashboard
   - Sheets for viewing user stats, specific anime, and such
+
+# Contribute
+- Filling out data
+  - Simply create a comment on the cell you wish to add data to
+- Suggesting new features
+  - Create an issue in Github detailing your idea
+- Adding new anime
+  - Create an issue in Github with the:
+    - Anime's name (either Romaji or English)
+    - A link to the anime from a separate tracker (AniDB, MAL, Anilist etc)
