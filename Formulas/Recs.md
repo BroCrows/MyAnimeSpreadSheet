@@ -35,61 +35,61 @@
         )
       ),
 
-BYROW(
-  AnimeDataLocal[Studio ID],
-  LAMBDA(csv,
-    IF(LEN(csv),
-      LET(
-        toks,  FILTER(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")), LEN(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")))),
-        names, MAP(toks, LAMBDA(t, IFERROR(INDEX(StudioDataLocal[Name], MATCH(t, StudioDataLocal[ID], 0)), ""))),
-        TEXTJOIN(", ", TRUE, names)
+      BYROW(
+        AnimeDataLocal[Studio ID],
+        LAMBDA(csv,
+          IF(LEN(csv),
+            LET(
+              toks,  FILTER(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")), LEN(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")))),
+              names, MAP(toks, LAMBDA(t, IFERROR(INDEX(StudioDataLocal[Name], MATCH(t, StudioDataLocal[ID], 0)), ""))),
+              TEXTJOIN(", ", TRUE, names)
+            ),
+            ""
+          )
+        ) 
       ),
-      ""
-    )
-  )
-),
-
-BYROW(
-  AnimeDataLocal[Genre ID],
-  LAMBDA(csv,
-    IF(LEN(csv),
-      LET(
-        toks,  FILTER(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")), LEN(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")))),
-        names, MAP(toks, LAMBDA(t, IFERROR(INDEX(GenreDataLocal[Name], MATCH(t, GenreDataLocal[ID], 0)), ""))),
-        TEXTJOIN(", ", TRUE, names)
+    
+      BYROW(
+        AnimeDataLocal[Genre ID],
+        LAMBDA(csv,
+          IF(LEN(csv),
+            LET(
+              toks,  FILTER(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")), LEN(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")))),
+              names, MAP(toks, LAMBDA(t, IFERROR(INDEX(GenreDataLocal[Name], MATCH(t, GenreDataLocal[ID], 0)), ""))),
+              TEXTJOIN(", ", TRUE, names)
+            ),
+            ""
+          )  
+        )
       ),
-      ""
-    )
-  )
-),
-
-BYROW(
-  AnimeDataLocal[Theme ID],
-  LAMBDA(csv,
-    IF(LEN(csv),
-      LET(
-        toks,  FILTER(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")), LEN(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")))),
-        names, MAP(toks, LAMBDA(t, IFERROR(INDEX(ThemeDataLocal[Name], MATCH(t, ThemeDataLocal[ID], 0)), ""))),
-        TEXTJOIN(", ", TRUE, names)
+    
+      BYROW(
+        AnimeDataLocal[Theme ID],
+        LAMBDA(csv,
+          IF(LEN(csv),
+            LET(
+              toks,  FILTER(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")), LEN(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")))),
+              names, MAP(toks, LAMBDA(t, IFERROR(INDEX(ThemeDataLocal[Name], MATCH(t, ThemeDataLocal[ID], 0)), ""))),
+              TEXTJOIN(", ", TRUE, names)
+            ),
+            ""
+          )
+        )
       ),
-      ""
-    )
-  )
-),
-
-BYROW(
-  AnimeDataLocal[Demographic ID],
-  LAMBDA(csv,
-    IF(LEN(csv),
-      LET(
-        toks,  FILTER(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")), LEN(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")))),
-        names, MAP(toks, LAMBDA(t, IFERROR(INDEX(DemographicDataLocal[Name], MATCH(t, DemographicDataLocal[ID], 0)), ""))),
-        TEXTJOIN(", ", TRUE, names)
+    
+      BYROW(
+        AnimeDataLocal[Demographic ID],
+        LAMBDA(csv,
+          IF(LEN(csv),
+            LET(
+              toks,  FILTER(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")), LEN(TRIM(SPLIT(SUBSTITUTE(csv, " ", ""), ",")))),
+              names, MAP(toks, LAMBDA(t, IFERROR(INDEX(DemographicDataLocal[Name], MATCH(t, DemographicDataLocal[ID], 0)), ""))),
+              TEXTJOIN(", ", TRUE, names)
+            ),
+            ""
+          )
+        )
       ),
-      ""
-    )
-  )
-),
 
       BYROW(
         AnimeDataLocal[Franchise ID],
