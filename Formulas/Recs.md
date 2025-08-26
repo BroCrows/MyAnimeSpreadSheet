@@ -1,4 +1,5 @@
-## RecPool Formula
+## RecPool Formula 
+RecPool!F2
 ```gs
 =IFERROR(
   LET(
@@ -221,6 +222,7 @@
 ```
 
 ## WatchNext Fomrula
+WatchNext!F2
 ```gs
 =IFERROR(
   LET(
