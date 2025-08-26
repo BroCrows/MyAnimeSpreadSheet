@@ -142,7 +142,7 @@ RecPool!F2
       out,
 
       ISNUMBER(AnimeDataLocal[Generated Rank]),
-      AnimeDataLocal[Status]="Unknown",
+      AnimeDataLocal[Status]="W00000",
       AnimeDataLocal[Watchable]=TRUE,
 
       IF(onlyDub,      AnimeDataLocal[Dubbed]<>FALSE,                 ROW(AnimeDataLocal[Anime ID])>0),
@@ -239,7 +239,21 @@ WatchNext!F2
       AnimeDataLocal[WatchNext Score],
       IFERROR(AnimeDataLocal[User Rank],     AnimeDataLocal[Generated Rank]),  
       IFERROR(AnimeDataLocal[User Score],    AnimeDataLocal[Generated Score]),
-      AnimeDataLocal[Status],
+
+      BYROW(
+        AnimeDataLocal[Status],
+        LAMBDA(s,
+          IF(
+            LEN(s)=0, "Planning",
+            IFERROR(
+              XLOOKUP(s, StatusDataLocal[ID], StatusDataLocal[Name], 
+                IFERROR(XLOOKUP(s, StatusDataLocal[Name], StatusDataLocal[Name], ""), "")
+              ),
+              ""
+            )
+          )
+        )
+      ),
 
       BYROW(
         AnimeDataLocal[Country ID],
