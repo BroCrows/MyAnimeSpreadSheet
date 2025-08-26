@@ -46,9 +46,9 @@
             ),
             ""
           )
-        ) 
+        )
       ),
-    
+      
       BYROW(
         AnimeDataLocal[Genre ID],
         LAMBDA(csv,
@@ -59,10 +59,10 @@
               TEXTJOIN(", ", TRUE, names)
             ),
             ""
-          )  
+          )
         )
       ),
-    
+      
       BYROW(
         AnimeDataLocal[Theme ID],
         LAMBDA(csv,
@@ -76,7 +76,7 @@
           )
         )
       ),
-    
+      
       BYROW(
         AnimeDataLocal[Demographic ID],
         LAMBDA(csv,
@@ -148,13 +148,72 @@
       IF(removeAiring, NOT(AnimeDataLocal[Airing]),                   ROW(AnimeDataLocal[Anime ID])>0),
       IF(useDC,        AnimeDataLocal[Data Completion] >= dcThresh,   ROW(AnimeDataLocal[Anime ID])>0),
 
-      IF(LEN($D$8),   NOT( ISNUMBER( MATCH(AnimeDataLocal[Format ID],     fmtSet,     0) ) ), ROW(AnimeDataLocal[Anime ID])>0),
-      IF(LEN($D$9),   NOT( REGEXMATCH(","&AnimeDataLocal[Genre ID]&",",        ",(" & genAlt   & ")(,|$)") ), ROW(AnimeDataLocal[Anime ID])>0),
-      IF(LEN($D$10),  NOT( REGEXMATCH(","&AnimeDataLocal[Theme ID]&",",        ",(" & themeAlt & ")(,|$)") ), ROW(AnimeDataLocal[Anime ID])>0),
-      IF(LEN($D$11),  NOT( REGEXMATCH(","&AnimeDataLocal[Demographic ID]&",",  ",(" & demoAlt  & ")(,|$)") ), ROW(AnimeDataLocal[Anime ID])>0),
-      IF(LEN($D$12),  NOT( ISNUMBER( MATCH(AnimeDataLocal[Country ID],   countrySet, 0) ) ), ROW(AnimeDataLocal[Anime ID])>0)
+      IF(
+        LEN($D$8),
+        NOT( ISNUMBER( MATCH( AnimeDataLocal[Format ID], TRIM(SPLIT($D$8, ",")), 0 ) ) ),
+        ROW(AnimeDataLocal[Anime ID])>0
+      ),
+      
+      IF(
+        LEN($D$9),
+        NOT(
+          BYROW(
+            AnimeDataLocal[Genre ID],
+            LAMBDA(csv,
+              LET(
+                rowToks,  FILTER(TRIM(SPLIT(SUBSTITUTE(csv," ",""),",")), LEN(TRIM(SPLIT(SUBSTITUTE(csv," ",""),",")))),
+                inSet,    TRIM(SPLIT($D$9, ",")),
+                anyHit,   SUM( N( ISNUMBER( MATCH(rowToks, inSet, 0) ) ) ) > 0,
+                anyHit
+              )
+            )
+          )
+        ),
+        ROW(AnimeDataLocal[Anime ID])>0
+      ),
+      
+      IF(
+        LEN($D$10),
+        NOT(
+          BYROW(
+            AnimeDataLocal[Theme ID],
+            LAMBDA(csv,
+              LET(
+                rowToks,  FILTER(TRIM(SPLIT(SUBSTITUTE(csv," ",""),",")), LEN(TRIM(SPLIT(SUBSTITUTE(csv," ",""),",")))),
+                inSet,    TRIM(SPLIT($D$10, ",")),
+                anyHit,   SUM( N( ISNUMBER( MATCH(rowToks, inSet, 0) ) ) ) > 0,
+                anyHit
+              )
+            )
+          )
+        ),
+        ROW(AnimeDataLocal[Anime ID])>0
+      ),
+      
+      IF(
+        LEN($D$11),
+        NOT(
+          BYROW(
+            AnimeDataLocal[Demographic ID],
+            LAMBDA(csv,
+              LET(
+                rowToks,  FILTER(TRIM(SPLIT(SUBSTITUTE(csv," ",""),",")), LEN(TRIM(SPLIT(SUBSTITUTE(csv," ",""),",")))),
+                inSet,    TRIM(SPLIT($D$11, ",")),
+                anyHit,   SUM( N( ISNUMBER( MATCH(rowToks, inSet, 0) ) ) ) > 0,
+                anyHit
+              )
+            )
+          )
+        ),
+        ROW(AnimeDataLocal[Anime ID])>0
+      ),
+      
+      IF(
+        LEN($D$12),
+        NOT( ISNUMBER( MATCH( AnimeDataLocal[Country ID], TRIM(SPLIT($D$12, ",")), 0 ) ) ),
+        ROW(AnimeDataLocal[Anime ID])>0
+      )
     ),
-
     SORTN(filtered, topN, TRUE, 4, FALSE)
   ),
   ""
